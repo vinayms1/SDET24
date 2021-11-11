@@ -12,4 +12,11 @@ public class ClassFour {
 	void clsFour() {
 		System.out.println("class Four is executed");
 	}
+	
+	
+	@Test
+	void clsfdfsdfsdfs() {
+		System.out.println("class Four is executedsdfsdfsdfsdfsdf");
+	}
+	
 }
