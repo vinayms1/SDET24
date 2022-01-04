@@ -13,6 +13,15 @@
   
   
   <dependencies>
+ <dependency>
+    <groupId>com.aventstack</groupId>
+    <artifactId>extentreports</artifactId>
+    <version>4.0.9</version>
+</dependency>
+ 
+
+
+  
   <dependency>
     <groupId>com.sikulix</groupId>
     <artifactId>sikulixapi</artifactId>

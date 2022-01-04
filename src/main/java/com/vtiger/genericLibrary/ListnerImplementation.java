@@ -11,22 +11,29 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-public class ListnerImplementation implements ITestListener{
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
 
+public class ListnerImplementation implements ITestListener {
+	public ExtentHtmlReporter htmlReport;
+	public ExtentReports reports;
+	public ExtentTest test;
 	public void onTestStart(ITestResult result) {
-		// TODO Auto-generated method stub
-		
-	}
+			}
 
 	public void onTestSuccess(ITestResult result) {
-		// TODO Auto-generated method stub
+		test.log(Status.PASS, result.getMethod().getMethodName()+" IS PASS");
 	
 	}
 
 	public void onTestFailure(ITestResult result) {
+		
 		String methodName = result.getMethod().getMethodName();
 		Object obj = result.getInstance();
-		WebDriver driver=null;;
+		WebDriver driver=null;
 		try {
 			driver = (WebDriver)result.getTestClass().getRealClass().getSuperclass().getDeclaredField("driver").get(obj);
 		} catch (IllegalArgumentException e) {
@@ -53,21 +60,45 @@ public class ListnerImplementation implements ITestListener{
 			e.printStackTrace();
 		}
 		
+		test.log(Status.FAIL, result.getMethod().getMethodName()+" is failed");
+		
+			try {
+				test.addScreenCaptureFromPath(dst.getAbsolutePath());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+        test.log(Status.FAIL, result.getThrowable());
 	}
 
 	public void onTestSkipped(ITestResult result) {
-		// TODO Auto-generated method stub
+		test.log(Status.SKIP, result.getMethod().getMethodName()+" IS SKIPPED");
+		test.log(Status.SKIP, result.getThrowable());
 		
 	}
 
 	public void onStart(ITestContext context) {
-		// TODO Auto-generated method stub
+		// htmlReport is to specify the path of the folder
+				htmlReport=new ExtentHtmlReporter("./Reports/extent.html");
+				htmlReport.config().setEncoding("UTF-8");
+				htmlReport.config().setDocumentTitle("HTML REPORT");
+				htmlReport.config().setReportName("Detailed Report");
+				htmlReport.config().setTheme(Theme.DARK);
+				
+				
+				// this is for mentioning the specification
+				reports= new ExtentReports();
+				reports.setSystemInfo("browser", "chrome");
+				reports.setSystemInfo("Environment", "windows-10");
+				reports.setSystemInfo("JDK", "11");
+				reports.attachReporter(htmlReport);
+
 		
 	}
 
 	public void onFinish(ITestContext context) {
-		// TODO Auto-generated method stub
-		
+		reports.flush();
 	}
 	
 
