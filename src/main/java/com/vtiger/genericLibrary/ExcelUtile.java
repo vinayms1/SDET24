@@ -20,7 +20,7 @@ public class ExcelUtile {
 	 * @throws Throwable
 	 */
 	public String getExcelValue(String sheetName, int row, int cell) throws EncryptedDocumentException, IOException, Throwable  {
-		FileInputStream fis=new FileInputStream("C:\\Users\\Vinay\\eclipse-workspace\\SDET24\\src\\test\\resources\\data\\Book1.xlsx");
+		FileInputStream fis=new FileInputStream(".\\src\\test\\resources\\data\\Book1.xlsx");
 		Workbook wb = WorkbookFactory.create(fis);
 		String data = wb.getSheet(sheetName).getRow(row).getCell(cell).getStringCellValue();
 		return data;

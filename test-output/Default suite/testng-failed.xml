@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="practies.Practies">
+      <class name="practies.sikuliDemo">
         <methods>
-          <include name="ecommerceTest"/>
+          <include name="fileUpload"/>
         </methods>
-      </class> <!-- practies.Practies -->
+      </class> <!-- practies.sikuliDemo -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

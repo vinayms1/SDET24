@@ -14,26 +14,30 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
+import com.vtiger.genericLibrary.BaseClass;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class Practies {
-	@Test
+@Listeners(com.vtiger.genericLibrary.ListnerImplementation.class)
+public class Practies  {
+	public WebDriver driver=null;
+	@Test(priority = 0)
 	public void ecommerceTest() {
 		
 		WebDriverManager.chromedriver().setup();
-		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get("https://www.amazon.in/");
-		Assert.fail();
+		
 		WebElement accountAndList = driver.findElement(By.id("nav-link-accountList-nav-line-1"));
 		Actions act = new Actions(driver);
 		act.moveToElement(accountAndList).perform();
 		driver.findElement(By.xpath("//span[.=\"Your Orders\"]")).click();
 		driver.navigate().back();
-	
+		Assert.fail();
 		WebElement dropDown = driver.findElement(By.id("searchDropdownBox"));
 		Select sel = new Select(dropDown);
 		sel.selectByVisibleText("Electronics");
@@ -57,11 +61,14 @@ public class Practies {
 		driver.switchTo().window(child);
 		driver.close();
 		driver.switchTo().window(parentID);
-		
-		
-		
-		
-		
 	}
-
+//	@Test
+//	public void aaa() {
+//		System.out.println("this is skipped");
+//		
+//	}
+//	@Test
+//	public void bbb() {
+//	System.out.println("sdadasdsadsdsa");
+//	}
 }

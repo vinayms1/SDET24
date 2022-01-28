@@ -11,7 +11,7 @@ public class FileUtiles {
 	 * @throws Throwable
 	 */
 	public String getvalues(String key) throws Throwable {
-	FileInputStream fis=new FileInputStream("C:\\Users\\Vinay\\eclipse-workspace\\SDET24\\src\\test\\resources\\data\\commondata.properties");
+	FileInputStream fis=new FileInputStream(".\\src\\test\\resources\\data\\commondata.properties");
 	Properties p = new Properties();
 	p.load(fis);
 	String value = p.getProperty(key);

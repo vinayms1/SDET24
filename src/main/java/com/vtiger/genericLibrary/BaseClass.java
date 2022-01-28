@@ -16,12 +16,14 @@ import com.vtiger.POM.HomePage;
 import com.vtiger.POM.LoginPage;
 
 public class BaseClass {
-	public WebDriver driver = null;
+	public  WebDriver driver;
 	public FileUtiles fLib= new FileUtiles(); 
 	public javaUtility jLib= new javaUtility();
 	public WebDriverUtility wLib= new WebDriverUtility();
 	public ExcelUtile eLib= new ExcelUtile();
 	DataBaseConnection dbLib=new DataBaseConnection();
+	public static WebDriver staticDriver;
+	
 
 	@BeforeSuite(groups = {"smokeTest","regressionTest"})
 	public void configBS() throws Throwable {
@@ -46,6 +48,7 @@ public class BaseClass {
 		else if(BROWSER.equals("firefox")) {
 			driver=new FirefoxDriver();
 		}
+		staticDriver=driver;
 		driver.get(fLib.getvalues("url"));
 		wLib.maximize(driver);
 		wLib.implicitWait(driver);

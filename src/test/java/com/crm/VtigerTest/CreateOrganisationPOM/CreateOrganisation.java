@@ -2,13 +2,14 @@ package com.crm.VtigerTest.CreateOrganisationPOM;
 
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import com.vtiger.POM.Creating_New_Organization;
 import com.vtiger.POM.HomePage;
 import com.vtiger.POM.OrganizationInfo;
 import com.vtiger.POM.OrganizationPage;
 import com.vtiger.genericLibrary.BaseClass;
-
+@Listeners(com.vtiger.genericLibrary.ListnerImplementation.class)
 public class CreateOrganisation extends BaseClass {
 
 	@Test(groups = "smokeTest")
@@ -20,8 +21,9 @@ public class CreateOrganisation extends BaseClass {
 		OrganizationPage opg = new OrganizationPage(driver);
 		Creating_New_Organization cnopg = new Creating_New_Organization(driver);
 		OrganizationInfo orginfopg = new OrganizationInfo(driver);
-
+		Assert.fail();
 		hpg.OrganizationLink();
+		
 		opg.createorganizationTest();
 		cnopg.organizationName(ORGNAME);
 		cnopg.savebutton();
@@ -50,10 +52,10 @@ public class CreateOrganisation extends BaseClass {
 		orginfopg.titleOfIndustryAndAccountType(INDUSTRYNAME, ACCOUNTTYPE);
 	}
 
-	@Test(retryAnalyzer = com.vtiger.genericLibrary.retryAnalyser.class)
-	public void sumne() {
-		Reporter.log("retry analyzer", true);
-		Assert.fail();
-	}
+//	@Test(retryAnalyzer = com.vtiger.genericLibrary.retryAnalyser.class)
+//	public void sumne() {
+//		Reporter.log("retry analyzer", true);
+//		Assert.fail();
+//	}
 
 }
